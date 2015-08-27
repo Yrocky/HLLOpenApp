@@ -37,24 +37,6 @@
     NSURL * imageURL = [NSURL URLWithString:openClass.icon];
     
     [self.iconImageVIew sd_setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"icon"]];
-    
-//    [manager cachedImageExistsForURL:imageURL completion:^(BOOL isInCache) {
-//       
-//        if (isInCache) {
-//            self.iconImageVIew.image = [UIImage alloc] ini
-//        }else{
-//            [manager downloadImageWithURL:imageURL
-//                                  options:0
-//                                 progress:nil
-//                                completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-//                                    if (image) {
-//                                        self.iconImageVIew.image = image;
-//                                    }
-//                                    [manager saveImageToCache:image forURL:imageURL];
-//                                }];
-//        }
-//    }];
-    
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

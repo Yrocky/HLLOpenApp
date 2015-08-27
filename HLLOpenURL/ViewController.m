@@ -308,6 +308,7 @@ static NSString * cellIdentifier = @"openURLCellIdentifier";
     }];
 }
 
+
 - (void) _sortOpenArrayWithLetterOrder{
 
     _openDictionary = [NSMutableDictionary dictionary];
@@ -315,20 +316,45 @@ static NSString * cellIdentifier = @"openURLCellIdentifier";
     for (HLLOpenClass * openClass in self.openArray) {
 
         NSString * name = openClass.name;
-        NSString * stringWithFirstLetter = [NSString stringWithFormat:@"%c",pinyinFirstLeter([name characterAtIndex:0])];
-        if ([stringWithFirstLetter isEqualToString:@""]) {
-            stringWithFirstLetter = [self upperStr:[stringWithFirstLetter substringToIndex:1]];
-        }
-        stringWithFirstLetter = stringWithFirstLetter.uppercaseString;
         
-        if ([[_openDictionary allKeys] containsObject:stringWithFirstLetter]) {
-            [[_openDictionary objectForKey:stringWithFirstLetter] addObject:openClass];
+        NSString * strFirLetter = [self letterOrderWithString:name];
+        
+        if ([[_openDictionary allKeys] containsObject:strFirLetter]) {
+            [[_openDictionary objectForKey:strFirLetter] addObject:openClass];
         }else{
             NSMutableArray * tempArray = [NSMutableArray array];
             [tempArray addObject:openClass];
-            [_openDictionary setObject:tempArray forKey:stringWithFirstLetter];
+            [_openDictionary setObject:tempArray forKey:strFirLetter];
         }
     }
+}
+
+/**
+ *  根据英文字母序对汉字和字母进行归类
+ */
+- (NSString *) letterOrderWithString:(NSString *)string{
+
+    //判断首字符是否为字母
+    NSString * regex = @"[A-Za-z]+";
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
+    NSString * initialStr = [string length]?[string  substringToIndex:1]:@"";
+    
+    NSString * strFirLetter;
+    if ([predicate evaluateWithObject:initialStr])
+    {
+        //首字母大写
+        strFirLetter = [initialStr capitalizedString];
+    }
+    else
+    {
+        if(![string isEqualToString:@""])
+        {
+            strFirLetter=[[NSString stringWithFormat:@"%c",pinyinFirstLeter(([string characterAtIndex:0]))]uppercaseString];
+        }else{
+            strFirLetter = @"#";
+        }
+    }
+    return strFirLetter;
 }
 
 -(NSString*)upperStr:(NSString*)str{
