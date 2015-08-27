@@ -349,7 +349,6 @@ NSInteger cmp(NSString * a, NSString* b, void * p)
 }
 - (NSArray *) _sortAllKeysWithOpenDictionary:(NSDictionary *)openDictionary{
     
-
     NSArray * allKeys = [openDictionary allKeys];
     NSArray * tempArr = [allKeys sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         
@@ -409,7 +408,7 @@ NSInteger cmp(NSString * a, NSString* b, void * p)
     CGRect addressTabelViewFrame = CGRectMake(addressTabelViewX, addressTabelViewY, addressTabelViewW, addressTabelViewH);
     UITableView * _tableView = [[UITableView alloc] initWithFrame:addressTabelViewFrame style:UITableViewStylePlain];
     _tableView.backgroundView = nil;
-    _tableView.backgroundColor = [UIColor colorWithRed:32/255.0 green:158/255.0 blue:211/255.0 alpha:1];
+    _tableView.backgroundColor = [UIColor colorWithRed:92/255.0 green:114/255.0 blue:179/255.0 alpha:1];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.tableHeaderView = [self tableViewHeaderView];
@@ -470,19 +469,19 @@ NSInteger cmp(NSString * a, NSString* b, void * p)
 
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
 
-    return 25;
+    return 16;
 }
 - (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
 
     CGFloat height = [self tableView:tableView heightForHeaderInSection:section];
     
     UIView * headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth([UIScreen mainScreen].bounds), height)];
-    headerView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.5];
+    headerView.backgroundColor = [UIColor colorWithWhite:0.25 alpha:0.5];
     
-    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(30, 0, CGRectGetWidth(headerView.bounds) - 40, CGRectGetHeight(headerView.bounds))];
+    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, CGRectGetWidth(headerView.bounds) - 40, CGRectGetHeight(headerView.bounds))];
     label.text = [self tableView:tableView titleForHeaderInSection:section];
     label.backgroundColor = [UIColor clearColor];
-    label.font = [UIFont systemFontOfSize:18];
+    label.font = [UIFont systemFontOfSize:14];
     label.textAlignment = NSTextAlignmentLeft;
     label.textColor = [UIColor whiteColor];
     [headerView addSubview:label];

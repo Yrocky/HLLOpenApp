@@ -52,7 +52,7 @@
                     </mask>
                 </variation>
             </tableViewCellContentView>
-            <color key="backgroundColor" red="0.12549019610000001" green="0.62013134059999997" blue="0.82745098039999998" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.3605421533" green="0.4461316877" blue="0.70272163720000003" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="iconImageVIew" destination="xbl-U3-OFs" id="yx1-jT-cIG"/>
                 <outlet property="nameLabel" destination="fBf-w5-295" id="g1G-sb-ann"/>
