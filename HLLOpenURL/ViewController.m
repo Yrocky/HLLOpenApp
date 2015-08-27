@@ -337,6 +337,41 @@ static NSString * cellIdentifier = @"openURLCellIdentifier";
     return lowerStr;
 }
 
+//构建数组排序方法SEL
+//NSInteger cmp(id, id, void *);
+//倒序排
+NSInteger cmp(NSString * a, NSString* b, void * p)
+{
+    if([a compare:b] != 1){
+        return NSOrderedDescending;//(1)
+    }else
+        return  NSOrderedAscending;//(-1)
+}
+- (NSArray *) _sortAllKeysWithOpenDictionary:(NSDictionary *)openDictionary{
+    
+
+    NSArray * allKeys = [openDictionary allKeys];
+    
+    NSArray * tempArr =  [allKeys sortedArrayUsingFunction:cmp context:NULL];
+    
+    NSMutableArray *array = [NSMutableArray arrayWithCapacity:0];
+    
+    for (int i = 0;i < [tempArr count];i++)
+    {
+        NSString *keyStr = [tempArr objectAtIndex:i];
+        
+        if ([keyStr isEqualToString:@"#"])
+        {
+            [array addObject:keyStr];
+        }
+        else
+        {
+            [array insertObject:keyStr atIndex:0];
+        }
+    }
+    
+    return array;
+}
 
 #pragma mark - UI
 - (void) _configureNavigatioinBar{
@@ -402,11 +437,12 @@ static NSString * cellIdentifier = @"openURLCellIdentifier";
 }
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView{
 
-    return [[self.openDictionary allKeys] count];
+    NSArray * allKeys = [self _sortAllKeysWithOpenDictionary:self.openDictionary];
+    return [allKeys count];
 }
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
 
-    NSArray * allKeys = self.openDictionary.allKeys;
+    NSArray * allKeys = [self _sortAllKeysWithOpenDictionary:self.openDictionary];
     NSArray * rows = [self.openDictionary objectForKey:[allKeys objectAtIndex:section]];
     return rows.count;
 //    return self.openArray.count;
@@ -416,7 +452,7 @@ static NSString * cellIdentifier = @"openURLCellIdentifier";
     
     HLLTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
 
-    NSArray * allKeys = self.openDictionary.allKeys;
+    NSArray * allKeys = [self _sortAllKeysWithOpenDictionary:self.openDictionary];
     NSArray * rows = [self.openDictionary objectForKey:[allKeys objectAtIndex:indexPath.section]];
     
     HLLOpenClass * openClass = rows[indexPath.row];
@@ -426,9 +462,15 @@ static NSString * cellIdentifier = @"openURLCellIdentifier";
     return cell;
 }
 
+- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+
+    return 25;
+}
 - (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
 
-    UIView * headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth([UIScreen mainScreen].bounds), 20)];
+    CGFloat height = [self tableView:tableView heightForHeaderInSection:section];
+    
+    UIView * headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth([UIScreen mainScreen].bounds), height)];
     headerView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.5];
     
     UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(30, 0, CGRectGetWidth(headerView.bounds) - 40, CGRectGetHeight(headerView.bounds))];
@@ -442,13 +484,15 @@ static NSString * cellIdentifier = @"openURLCellIdentifier";
 }
 - (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
 
-    NSArray * allKeys = self.openDictionary.allKeys;
+    NSArray * allKeys = [self _sortAllKeysWithOpenDictionary:self.openDictionary];
     return [allKeys objectAtIndex:section];
 }
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView{
+    
     tableView.sectionIndexBackgroundColor = [UIColor clearColor];
     tableView.sectionIndexColor = [UIColor whiteColor];
-    return [self.openDictionary allKeys];
+    NSArray * allKeys = [self _sortAllKeysWithOpenDictionary:self.openDictionary];
+    return allKeys;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
