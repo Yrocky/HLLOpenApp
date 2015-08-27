@@ -351,8 +351,14 @@ NSInteger cmp(NSString * a, NSString* b, void * p)
     
 
     NSArray * allKeys = [openDictionary allKeys];
-    
-    NSArray * tempArr =  [allKeys sortedArrayUsingFunction:cmp context:NULL];
+    NSArray * tempArr = [allKeys sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        
+        if ([obj1 compare:obj2] != 1) {
+            return NSOrderedDescending;
+        }else{
+            return NSOrderedAscending;
+        }
+    }];
     
     NSMutableArray *array = [NSMutableArray arrayWithCapacity:0];
     
