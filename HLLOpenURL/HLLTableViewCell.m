@@ -25,7 +25,9 @@
     return [UINib nibWithNibName:@"HLLTableViewCell" bundle:nil];
 }
 - (void)awakeFromNib {
-    
+    UIView * selectedView = [[UIView alloc] init];
+    selectedView.backgroundColor = [UIColor colorWithWhite:0.6 alpha:0.5];
+    self.selectedBackgroundView = selectedView;
 }
 
 - (void)configureCellWithOpenClass:(HLLOpenClass *)openClass{
