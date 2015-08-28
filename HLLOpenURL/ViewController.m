@@ -408,7 +408,7 @@ NSInteger cmp(NSString * a, NSString* b, void * p)
 - (void) _configureNavigatioinBar{
 
     UILabel * headlinelabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 40)];
-    headlinelabel.font = [UIFont fontWithName:@"Zapfino" size:18];
+    headlinelabel.font = [UIFont fontWithName:@"Courier New" size:28];
     headlinelabel.textAlignment = NSTextAlignmentCenter;
     headlinelabel.textColor = [UIColor grayColor];
     
@@ -476,7 +476,6 @@ NSInteger cmp(NSString * a, NSString* b, void * p)
     NSArray * allKeys = [self _sortAllKeysWithOpenDictionary:self.openDictionary];
     NSArray * rows = [self.openDictionary objectForKey:[allKeys objectAtIndex:section]];
     return rows.count;
-//    return self.openArray.count;
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -529,7 +528,10 @@ NSInteger cmp(NSString * a, NSString* b, void * p)
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
-    HLLOpenClass * openClass = self.openArray[indexPath.row];
+    NSArray * allKeys = [self _sortAllKeysWithOpenDictionary:self.openDictionary];
+    NSArray * rows = [self.openDictionary objectForKey:[allKeys objectAtIndex:indexPath.section]];
+    
+    HLLOpenClass * openClass = rows[indexPath.row];
     
     [self openUrlWithOpenClass:openClass];
 #if 0
