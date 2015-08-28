@@ -410,7 +410,7 @@ NSInteger cmp(NSString * a, NSString* b, void * p)
     UILabel * headlinelabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 40)];
     headlinelabel.font = [UIFont fontWithName:@"Courier New" size:28];
     headlinelabel.textAlignment = NSTextAlignmentCenter;
-    headlinelabel.textColor = [UIColor grayColor];
+    headlinelabel.textColor = [UIColor whiteColor];
     
     self.title = @"Quick Launch";
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:self.title];
@@ -421,8 +421,8 @@ NSInteger cmp(NSString * a, NSString* b, void * p)
                              value:[UIFont fontWithName:@"Gill Sans" size:28]
                              range:NSMakeRange(6, 6)];
     headlinelabel.attributedText = attributedString;
-
-    self.navigationController.navigationBar.tintColor = [UIColor orangeColor];
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:92/255.0 green:114/255.0 blue:179/255.0 alpha:1];
     [self.navigationItem setTitleView:headlinelabel];
 }
 - (void) _addSubView{
