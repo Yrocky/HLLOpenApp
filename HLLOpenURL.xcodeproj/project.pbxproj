@@ -43,6 +43,7 @@
 		18947E9C1B8F0B0B00199FD2 /* icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18947E9A1B8F0B0B00199FD2 /* icon@3x.png */; };
 		18947EA01B8F100700199FD2 /* HLLTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18947E9E1B8F100700199FD2 /* HLLTableViewCell.m */; };
 		18947EA11B8F100700199FD2 /* HLLTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18947E9F1B8F100700199FD2 /* HLLTableViewCell.xib */; };
+		18947EB71B95F47A00199FD2 /* HLLDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 18947EB61B95F47A00199FD2 /* HLLDataSource.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +119,10 @@
 		18947E9D1B8F100700199FD2 /* HLLTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLLTableViewCell.h; sourceTree = "<group>"; };
 		18947E9E1B8F100700199FD2 /* HLLTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLLTableViewCell.m; sourceTree = "<group>"; };
 		18947E9F1B8F100700199FD2 /* HLLTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HLLTableViewCell.xib; sourceTree = "<group>"; };
+		18947EB51B95F47A00199FD2 /* HLLDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLLDataSource.h; sourceTree = "<group>"; };
+		18947EB61B95F47A00199FD2 /* HLLDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLLDataSource.m; sourceTree = "<group>"; };
+		18947EB81B95F60000199FD2 /* Tool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tool.h; sourceTree = "<group>"; };
+		18947EBB1B95FB0600199FD2 /* HLLOpenURL.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = HLLOpenURL.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +164,7 @@
 		18947E291B8EEEE100199FD2 /* HLLOpenURL */ = {
 			isa = PBXGroup;
 			children = (
+				18947EBB1B95FB0600199FD2 /* HLLOpenURL.entitlements */,
 				18947E2E1B8EEEE100199FD2 /* AppDelegate.h */,
 				18947E2F1B8EEEE100199FD2 /* AppDelegate.m */,
 				18947E311B8EEEE100199FD2 /* ViewController.h */,
@@ -179,6 +185,7 @@
 			children = (
 				18947E2B1B8EEEE100199FD2 /* Info.plist */,
 				18947E2C1B8EEEE100199FD2 /* main.m */,
+				18947EB81B95F60000199FD2 /* Tool.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -247,6 +254,8 @@
 				18947E911B8F019C00199FD2 /* HLLClass.m */,
 				18947E931B8F01B500199FD2 /* HLLOpenClass.h */,
 				18947E941B8F01B500199FD2 /* HLLOpenClass.m */,
+				18947EB51B95F47A00199FD2 /* HLLDataSource.h */,
+				18947EB61B95F47A00199FD2 /* HLLDataSource.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -335,6 +344,12 @@
 				TargetAttributes = {
 					18947E261B8EEEE100199FD2 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = 946EWG88C7;
+						SystemCapabilities = {
+							com.apple.Passbook = {
+								enabled = 0;
+							};
+						};
 					};
 					18947E3F1B8EEEE100199FD2 = {
 						CreatedOnToolsVersion = 6.4;
@@ -413,6 +428,7 @@
 				18947E861B8EFDE700199FD2 /* SDWebImageDownloaderOperation.m in Sources */,
 				18947E301B8EEEE100199FD2 /* AppDelegate.m in Sources */,
 				18947E891B8EFDE700199FD2 /* UIButton+WebCache.m in Sources */,
+				18947EB71B95F47A00199FD2 /* HLLDataSource.m in Sources */,
 				18947E881B8EFDE700199FD2 /* SDWebImagePrefetcher.m in Sources */,
 				18947E8E1B8EFDE700199FD2 /* UIImageView+WebCache.m in Sources */,
 				18947E831B8EFDE700199FD2 /* SDWebImageCompat.m in Sources */,
@@ -612,6 +628,7 @@
 				18947E4C1B8EEEE100199FD2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		18947E4D1B8EEEE100199FD2 /* Build configuration list for PBXNativeTarget "HLLOpenURLTests" */ = {
 			isa = XCConfigurationList;
@@ -620,6 +637,7 @@
 				18947E4F1B8EEEE100199FD2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
