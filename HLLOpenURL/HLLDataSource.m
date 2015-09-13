@@ -50,13 +50,19 @@ char pinyinFirstLeter(unsigned short hanzi)
     if (self) {
         self.cellIdentifier = aCellIdentifier;
         self.configureCellBlock = [aConfigureCellBlock copy];// 这里使用copy而不是直接将block进行赋值，
-        
-        [self _loadDataFromPlist];
+ 
+//        [self _loadDataFromPlist];
     }
     return self;
 }
 
-
+- (void)dataSource_didFinishLoadDataHandle:(Compeltion)handle{
+ 
+    [self _loadDataFromPlist];
+    if (handle) {
+        handle(YES);
+    }
+}
 - (void) _loadDataFromPlist{
 
     NSString * plist = [[NSBundle mainBundle] pathForResource:@"schemes-1.0.0" ofType:@"plist"];
@@ -74,6 +80,7 @@ char pinyinFirstLeter(unsigned short hanzi)
     }];
     
     [self _sortOpenArrayWithLetterOrder];
+    
     NSLog(@"dict:%@",_openDictionary);
 }
 

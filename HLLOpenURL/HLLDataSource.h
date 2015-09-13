@@ -11,13 +11,16 @@
 
 typedef void (^TableViewCellConfigureBlock)(id cell, id item);
 
-@interface HLLDataSource : NSObject<UITableViewDataSource>
+typedef void (^Compeltion)(BOOL finish);
 
+@interface HLLDataSource : NSObject<UITableViewDataSource>
 
 - (id)initWithCellIdentifier:(NSString *)aCellIdentifier
           configureCellBlock:(TableViewCellConfigureBlock)aConfigureCellBlock;
 
 - (id) itemWithIndexPath:(NSIndexPath *)indexPath;
+
+- (void) dataSource_didFinishLoadDataHandle:(Compeltion)handle;
 
 - (NSArray  *) dataSource_sectionsWithSortAllKeysForOpenDictionary;
 - (NSArray  *) dataSource_rowsAtOneSection:(NSInteger)section;

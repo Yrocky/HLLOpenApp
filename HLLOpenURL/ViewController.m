@@ -7,13 +7,14 @@
 //
 
 #import "ViewController.h"
-#import "SDWebImageManager.h"
 #import "HLLOpenClass.h"
 #import "HLLTableViewCell.h"
 #import "HLLDataSource.h"
+#import "SDImageCache.h"
 
 @interface ViewController ()<UITableViewDelegate>
 
+@property (nonatomic ,strong) UITableView * tableView;
 @property (nonatomic ,strong) HLLDataSource * dataSource;
 @end
 
@@ -24,7 +25,7 @@ static NSString * cellIdentifier = @"openURLCellIdentifier";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     [self _addData];
     [self _configureNavigatioinBar];
     [self _addSubView];
@@ -39,6 +40,11 @@ static NSString * cellIdentifier = @"openURLCellIdentifier";
     _dataSource = [[HLLDataSource alloc] initWithCellIdentifier:cellIdentifier
                                              configureCellBlock:configureBlock];
 
+    [self.dataSource dataSource_didFinishLoadDataHandle:^(BOOL finish) {
+        if (finish) {
+            [self.tableView reloadData];
+        }
+    }];
 }
 #pragma mark - UI
 - (void) _configureNavigatioinBar{
@@ -68,7 +74,7 @@ static NSString * cellIdentifier = @"openURLCellIdentifier";
     CGFloat addressTabelViewW = CGRectGetWidth([UIScreen mainScreen].bounds);
     CGFloat addressTabelViewH = CGRectGetHeight([UIScreen mainScreen].bounds);
     CGRect addressTabelViewFrame = CGRectMake(addressTabelViewX, addressTabelViewY, addressTabelViewW, addressTabelViewH);
-    UITableView * _tableView = [[UITableView alloc] initWithFrame:addressTabelViewFrame style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc] initWithFrame:addressTabelViewFrame style:UITableViewStylePlain];
     _tableView.backgroundView = nil;
     _tableView.backgroundColor = [UIColor colorWithRed:92/255.0 green:114/255.0 blue:179/255.0 alpha:1];
     _tableView.delegate = self;
